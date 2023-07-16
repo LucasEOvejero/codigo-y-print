@@ -1,4 +1,5 @@
-# print def ordenarDiccionario(diccionario_par, clave, descendente=True):
+# print 
+def ordenarDiccionario(diccionario_par, clave, descendente=True):
     if not isinstance(diccionario_par, dict) or clave not in diccionario_par:
         return None
 
