@@ -1,98 +1,61 @@
-# print 
-def ordenarDiccionario(diccionario_par, clave, descendente=True):
-    if not isinstance(diccionario_par, dict) or clave not in diccionario_par:
+def numeroMayor(lista):
+    if isinstance(lista, list) and all(isinstance(num, int) for num in lista):
+        mayor = max(lista)
+        return mayor
+    else:
         return None
 
-    diccionario_ordenado = {}
-    lista_indices_ordenados = sorted(range(len(diccionario_par[clave])), key=lambda x: diccionario_par[clave][x], reverse=descendente)
-
-    for key, values in diccionario_par.items():
-        diccionario_ordenado[key] = [values[i] for i in lista_indices_ordenados]
-
-    return diccionario_ordenado
-
-
-def listaEnteros(inicio, tamanio):
-    return list(range(inicio, inicio + tamanio))
-
-
-def dividirDosNumeros(dividendo, divisor):
-    cociente = dividendo // divisor
-    resto = dividendo % divisor
-    return cociente, resto
-
-
-class ClaseAnimal:
-    def __init__(self, especie, color):
-        self.Edad = 0
-        self.Especie = especie
-        self.Color = color
-
-    def CumplirAnios(self):
-        self.Edad += 1
-        return self.Edad
-
-
-def claseAnimal(especie, color):
-    return ClaseAnimal(especie, color)
-
-
-def exponente(numero, exponente):
-    return numero ** exponente
-
-
-def listaPrimos(desde, hasta):
-    if not isinstance(desde, int) or not isinstance(hasta, int) or desde <= 0 or hasta <= 0:
+def numeroBinario(numero):
+    if isinstance(numero, int) and numero > 0:
+        return bin(numero)[2:] # Convertir el número a binario y quitar el prefijo "0b"
+    elif numero == 0:
+        return '0'
+    else:
         return None
 
-    if hasta < desde:
-        return []
+def crearDiccionario(lista):
+    if all(isinstance(num, int) for num in lista):
+        multiplos3 = [num for num in lista if num % 3 == 0] # Múltiplos de 3
+        cuadrados = [num**2 for num in lista] # Cuadrados
+        promedio = sum(lista) / len(lista)
+        menores_promedio = [num for num in lista if num < promedio] # Números menores al promedio
 
-    primos = []
-    for num in range(desde, hasta + 1):
-        if num > 1:
-            for i in range(2, num):
-                if num % i == 0:
-                    break
-            else:
-                primos.append(num)
-
-    return primos
-
-
-def listaRepetidos(lista):
-    if not isinstance(lista, list):
+        return {
+            'multiplos3': multiplos3,
+            'cuadrados': cuadrados,
+            'menores_promedio': menores_promedio
+        }
+    else:
         return None
 
-    lista_sin_repetir = list(set(lista))
-    lista_tuplas = [(item, lista.count(item)) for item in lista_sin_repetir]
+def trianguloRectangulo(a, b, c):
+    if all(isinstance(num, int) for num in [a, b, c]):
+        if a**2 + b**2 == c**2 or b**2 + c**2 == a**2 or a**2 + c**2 == b**2: # Teorema de Pitágoras
+            return True
+        else:
+            return False
+    else:
+        return None
 
-    return lista_tuplas
+def ciudadesPoblacion(diccionario):
+    if isinstance(diccionario, dict):
+        ciudades_seleccionadas = [[ciudad, poblacion] for ciudad, poblacion in diccionario.items() if ciudad.startswith('B')]
+        promedio = sum(poblacion for ciudad, poblacion in ciudades_seleccionadas) / len(ciudades_seleccionadas)
+        ciudades_seleccionadas.append(['promedio', promedio])
+        return ciudades_seleccionadas
+    else:
+        return None
 
+def ordenarPalabras(palabras):
+    if isinstance(palabras, str) and '-' in palabras:
+        palabras_lista = palabras.split('-')
+        palabras_lista.sort()
+        return '-'.join(palabras_lista)
+    else:
+        return None
 
-# Pruebas
-dicc = {
-    'clave1': ['c', 'a', 'b'],
-    'clave2': ['casa', 'auto', 'barco'],
-    'clave3': [1, 2, 3]
-}
-print(ordenarDiccionario(dicc, 'clave1'))  # Debe retornar {'clave1': ['a', 'b', 'c'], 'clave2': ['auto', 'barco', 'casa'], 'clave3': [2, 3, 1]}
-
-print(listaEnteros(10, 5))  # Debe retornar [10, 11, 12, 13, 14]
-
-print(dividirDosNumeros(10, 3))  # Debe retornar (3, 1)
-
-animal = claseAnimal('perro', 'blanco')
-print(animal.CumplirAnios())  # Debe retornar 1
-print(animal.CumplirAnios())  # Debe retornar 2
-print(animal.CumplirAnios())  # Debe retornar 3
-
-print(exponente(10, 3))  # Debe retornar 1000
-
-print(listaPrimos(7, 15))  # Debe retornar [7, 11, 13]
-print(listaPrimos(100, 99))  # Debe retornar []
-print(listaPrimos(1, 7))  # Debe retornar [1, 2, 3, 5, 7]
-
-print(listaRepetidos([]))  # Debe retornar []
-print(listaRepetidos(['hola', 'mundo', 'hola', 13, 14]))  # Debe retornar [('hola', 2), ('mundo', 1), (13, 1), (14, 1)]
-print(listaRepetidos([1, 2, 2, 4]))  # Debe retornar [(1, 1), (2, 2), (4, 1)]
+def stringEspejo(texto):
+    if isinstance(texto, str) and len(texto) > 3:
+        return texto[::-1] # Invertir el texto utilizando slicing
+    else:
+        return None
